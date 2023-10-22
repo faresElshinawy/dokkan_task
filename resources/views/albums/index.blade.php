@@ -66,10 +66,12 @@
                     @endforeach
                 </select>
                 <div class="mt-4">
-                    <button class="moveImagesButton bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600" >Move
+                    <button class="moveImagesButton bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600">Move
                         Images</button>
                     <button class="deleteImagesButton bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">Delete
                         Anyway</button>
+                    <button class="cancelButton bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-200 hover:text-black">cancel
+                    </button>
                 </div>
             </form>
         </div>
@@ -83,52 +85,51 @@
 @section('js')
 
     <script>
-
         function deleteAlbum(album_id, images_count = null) {
 
 
-            function deleteAjaxRequest(){
+            function deleteAjaxRequest() {
                 $.ajax({
-                            url: "{{ route('albums.destroy') }}",
-                            type: 'post',
-                            cache: false,
-                            data: {
-                                '_token': '{{ csrf_token() }}',
-                                'album_id': album_id
-                            },
-                            success: function(data) {
-                                if (data.code == 200) {
-                                    Swal.fire({
-                                        icon:'success',
-                                        title:data.message
-                                    })
-                                    $(`.album-${album_id}`).remove();
-                                }else if(data.code == 400){
-                                    let errors = [];
-                                    for(key in data.errors){
-                                        if(data.errors.hasOwnProperty(key)){
-                                            errors.push(data.errors[key]);
-                                        }
-                                        html = errors.join('\n');
-                                        Swal.fire({
-                                            icon:'error',
-                                            title:data.message,
-                                            showConfirmButton:false,
-                                            html:html
-                                        })
-                                    }
-                                }else{
-                                    Swal.fire({
-                                            icon:'error',
-                                            title:data.message,
-                                            showConfirmButton:false,
-                                        })
+                    url: "{{ route('albums.destroy') }}",
+                    type: 'post',
+                    cache: false,
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                        'album_id': album_id
+                    },
+                    success: function(data) {
+                        if (data.code == 200) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: data.message
+                            })
+                            $(`.album-${album_id}`).remove();
+                        } else if (data.code == 400) {
+                            let errors = [];
+                            for (key in data.errors) {
+                                if (data.errors.hasOwnProperty(key)) {
+                                    errors.push(data.errors[key]);
                                 }
-
-                                $('#moveImagesModal').addClass('hidden');
-
+                                html = errors.join('\n');
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: data.message,
+                                    showConfirmButton: false,
+                                    html: html
+                                })
                             }
-                        })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: data.message,
+                                showConfirmButton: false,
+                            })
+                        }
+
+                        $('#moveImagesModal').addClass('hidden');
+
+                    }
+                })
             }
 
             let html = '';
@@ -140,11 +141,18 @@
                         e.preventDefault();
                         deleteAjaxRequest()
                     });
-                    $('.moveImagesButton').click(function(e){
+                    $('.moveImagesButton').click(function(e) {
                         e.preventDefault();
-                        let url = "{{route('albums.move',['album'=>':album_id'])}}".replace(':album_id',album_id)
-                        $('.move-image-form').attr('action',url).submit();
+                        let url = "{{ route('albums.move', ['album' => ':album_id']) }}".replace(':album_id',
+                            album_id)
+                        $('.move-image-form').attr('action', url).submit();
 
+                    });
+
+                    $('.cancelButton').click(function (e){
+
+                        e.preventDefault();
+                        $('#moveImagesModal').addClass('hidden');
                     })
 
                 } else {
