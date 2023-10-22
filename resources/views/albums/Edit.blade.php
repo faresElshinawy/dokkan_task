@@ -9,8 +9,9 @@
 
 
         <div class="bg-gray-700 overflow-hidden shadow-md rounded-lg mt-4 p-4">
-            <form action="{{ route('albums.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('albums.update',['album'=>$album->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="mb-4">
                     <label for="name" class="block text-white font-semibold">Album Name:</label>
                     <input type="text" name="name" value="{{ old('name') ?? $album->name }}"
