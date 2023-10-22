@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ablum_images', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
+            $table->integer('imageable_id')->unsigned();
+            $table->string('imageable_type');
             $table->string('name');
             $table->string('upload_name');
-            $table->foreignId('album_id')->references('id')->on('albums');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ablum_images');
+        Schema::dropIfExists('images');
     }
 };

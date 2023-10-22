@@ -30,7 +30,7 @@
                             @endif
                         </td>
                         <td class="px-4 py-2">
-                            <a href="" class="text-white-400 hover:underline mr-2">View</a>
+                            <a href="{{route('albums.show',['album'=>$album->id])}}" class="text-white-400 hover:underline mr-2">View</a>
                             <a href="{{route('albums.edit',['album'=>$album->id])}}" class="text-yellow-400 hover:underline mr-2">Edit</a>
                             <a href="" class="text-red-400 hover:underline mr-2">Delete</a>
                         </td>

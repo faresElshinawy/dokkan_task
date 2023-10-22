@@ -42,6 +42,12 @@
             </div>
         @endif
 
+        @if (Session::has('error'))
+            <div class="bg-red-500 text-white p-4 mt-4 rounded">
+                    <h2 class="text-lg font-semibold">{{ Session::get('error') }}</h2>
+            </div>
+        @endif
+
         <!-- Success Alert -->
         @if (Session::has('success'))
             <div class="bg-green-500 text-white p-4 mt-4 rounded">

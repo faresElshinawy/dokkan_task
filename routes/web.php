@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AlbumController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,11 +44,18 @@ Route::group([
         'controller'=>AlbumController::class
     ],function (){
         Route::get('/','index')->name('all');
+        Route::get('/show/{album}','show')->name('show');
         Route::get('/create','create')->name('create');
         Route::post('/store','store')->name('store');
         Route::get('/edit/{album}','edit')->name('edit');
         Route::put('/update/{album}','update')->name('update');
+        Route::get('new-image/{album}','newAlbumImageCreate')->name('newImage.create');
+        Route::post('new-image-store/{album}','newAlbumImageStore')->name('newImage.store');
+        Route::delete('destroy-album-image/{image}','albumImagedestroy')->name('newImage.destroy');
+        Route::put('/move-images/{album}','move')->name('move');
     });
+
+
 
 
 
