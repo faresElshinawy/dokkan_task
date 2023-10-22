@@ -101,7 +101,8 @@
                         if (data.code == 200) {
                             Swal.fire({
                                 icon: 'success',
-                                title: data.message
+                                title: data.message,
+                                showConfirmButton: false
                             })
                             $(`.album-${album_id}`).remove();
                         } else if (data.code == 400) {
