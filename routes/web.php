@@ -53,6 +53,7 @@ Route::group([
         Route::post('new-image-store/{album}','newAlbumImageStore')->name('newImage.store');
         Route::delete('destroy-album-image/{image}','albumImagedestroy')->name('newImage.destroy');
         Route::put('/move-images/{album}','move')->name('move');
+        Route::post('/destroy','destroy')->name('destroy');
     });
 
 

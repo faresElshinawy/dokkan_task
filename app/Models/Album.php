@@ -19,6 +19,6 @@ class Album extends Model
 
 
     public function images(){
-        return $this->morphMany(Image::class,'imageable_id');
+        return $this->morphMany(Image::class,'imageable','imageable_type');
     }
 }
