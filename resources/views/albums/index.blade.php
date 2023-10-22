@@ -25,7 +25,7 @@
                 <tbody>
                     @foreach ($albums as $album)
                         <tr class="hover:bg-gray-600 album-{{ $album->id }}">
-                            <td class="px-4 py-2">{{ $album->id }}</td>
+                            <td class="px-4 py-2">{{ $loop->iteration}}</td>
                             <td class="px-4 py-2">{{ $album->name }}</td>
                             <td class="px-4 py-2">
                                 @if (File::exists(public_path(\App\Models\Album::$uploadPath) . '/' . $album->image))

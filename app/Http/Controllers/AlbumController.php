@@ -124,6 +124,8 @@ class AlbumController extends Controller
 
         $album = Album::where('id',$album_id)->first();
 
+        
+
         $album->delete();
 
 

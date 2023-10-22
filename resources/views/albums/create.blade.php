@@ -19,7 +19,7 @@
                 <label for="image" class="block text-white font-semibold">Album Image:</label>
                 <input type="file" name="image"  class="w-full px-3 py-2 bg-gray-800 text-white border rounded-lg focus:outline-none focus:border-blue-500" accept="image/*" >
             </div>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">Create Album</button>
+            <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">Create Album</button>
         </form>
     </div>
 </div>
