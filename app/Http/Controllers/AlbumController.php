@@ -11,9 +11,10 @@ use Illuminate\Http\Request;
 use App\Services\AlbumService;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\AlbumMoveImageRequest;
 use App\Http\Requests\Album\AlbumStoreRequest;
+use App\Http\Requests\Album\AlbumUpdateRequest;
 use App\Http\Requests\Album\NewImageStoreRequest;
+use App\Http\Requests\Album\AlbumMoveImageRequest;
 
 class AlbumController extends Controller
 {
@@ -54,7 +55,7 @@ class AlbumController extends Controller
     }
 
 
-    public function update(Request $request ,Album $album){
+    public function update(AlbumUpdateRequest $request ,Album $album){
         $album->update([
             'name'=>$request->name,
             'image'=>$this->newImage(Album::$uploadPath,$request,$album->image)
