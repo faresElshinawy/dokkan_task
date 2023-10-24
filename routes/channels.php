@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('create-album.{user_id}', function (User $user, $user_id) {
+    return $user->id == $user_id;
+},
+['guards'=>['web']]);

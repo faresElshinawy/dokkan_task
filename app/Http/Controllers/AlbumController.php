@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Traits\Api;
 use App\Models\Album;
 use App\Models\Image;
 use App\Traits\UploadFile;
 use Illuminate\Http\Request;
+use App\Events\NewAlbumEvent;
 use App\Services\AlbumService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Album\AlbumStoreRequest;
@@ -45,8 +46,15 @@ class AlbumController extends Controller
             'image'=>$this->newImage(Album::$uploadPath,$request)
         ]);
 
-            Session::flash('success','Album Created Successfully');
-            return redirect()->back();
+        $data = [
+            'album_name'=>$request->name,
+            'user_name'=>Auth::user()->name
+        ];
+
+        event(new NewAlbumEvent($data));
+
+        Session::flash('success','Album Created Successfully');
+        return redirect()->back();
     }
 
 
@@ -124,7 +132,7 @@ class AlbumController extends Controller
 
         $album = Album::where('id',$album_id)->first();
 
-        
+
 
         $album->delete();
 
