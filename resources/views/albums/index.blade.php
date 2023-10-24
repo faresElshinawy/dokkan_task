@@ -95,7 +95,6 @@
                     cache: false,
                     data: {
                         '_token': '{{ csrf_token() }}',
-                        'album_id': album_id
                     },
                     success: function(data) {
                         if (data.code == 200) {
@@ -151,7 +150,6 @@
                     });
 
                     $('.cancelButton').click(function (e){
-
                         e.preventDefault();
                         $('#moveImagesModal').addClass('hidden');
                     })
