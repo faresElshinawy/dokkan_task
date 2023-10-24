@@ -98,9 +98,9 @@ class AlbumController extends Controller
         if(!$image->delete()){
             Session::flash('error','could not make this action please try again late');
         }else{
+            $this->removeFile(Album::$uploadPath,$image_name);
             Session::flash('success','Image Removed Successfully');
         }
-        $this->removeFile(Album::$uploadPath,$image_name);
         return redirect()->back();
     }
 
