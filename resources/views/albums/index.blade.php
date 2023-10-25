@@ -95,6 +95,7 @@
                     cache: false,
                     data: {
                         '_token': '{{ csrf_token() }}',
+                        'album_id':album_id
                     },
                     success: function(data) {
                         if (data.code == 200) {
@@ -139,7 +140,7 @@
                     $('#moveImagesModal').removeClass('hidden');
                     $('.deleteImagesButton').click(function(e) {
                         e.preventDefault();
-                        deleteAjaxRequest()
+                        deleteAlbum(album_id,0);
                     });
                     $('.moveImagesButton').click(function(e) {
                         e.preventDefault();

@@ -10,6 +10,7 @@
             let html = `<x-dropdown-link>
                                 You Have Created This New Album ${data.data.album_name}
                             </x-dropdown-link>`;
+            $('.alert-holder').remove();
             $('.alert-box-content').prepend(html);
         });
     });
